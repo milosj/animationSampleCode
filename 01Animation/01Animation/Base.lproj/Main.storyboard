@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -27,8 +28,45 @@
                                     <action selector="tappedAButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pdb-97-jBP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3T8-Uj-m9y">
+                                <rect key="frame" x="16" y="20" width="78" height="50"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="78" id="8dN-vG-6f2"/>
+                                    <constraint firstAttribute="height" constant="50" id="eEK-hA-QxU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Constrained">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8dN-vG-6f2"/>
+                                        <exclude reference="eEK-hA-QxU"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="constrainedButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qq4-W4-adk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3T8-Uj-m9y" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="CxU-C2-1l8"/>
+                            <constraint firstAttribute="trailing" secondItem="3T8-Uj-m9y" secondAttribute="trailing" constant="226" id="bKn-QE-dYN"/>
+                            <constraint firstItem="3T8-Uj-m9y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="jga-ue-Pfp"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="bKn-QE-dYN"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="bKn-QE-dYN"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="aButton" destination="MJj-GM-6nn" id="SLt-El-6qP"/>

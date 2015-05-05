@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +18,171 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZn-qL-jdu">
+                                <rect key="frame" x="24" y="562" width="63" height="30"/>
+                                <state key="normal" title="Scale Up">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="64" y="762" width="63" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="scaleUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zf9-xp-Zl5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ow6-QS-yM6">
+                                <rect key="frame" x="107" y="562" width="82" height="30"/>
+                                <state key="normal" title="Scale Down">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="135" y="762" width="82" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="scaleDown:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YSK-iE-75y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amA-ge-6Uc">
+                                <rect key="frame" x="16" y="524" width="86" height="30"/>
+                                <state key="normal" title="Rotate CCW">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="225" y="762" width="86" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="rotateCCW:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K62-pT-GfQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLB-mD-GTe">
+                                <rect key="frame" x="110" y="524" width="75" height="30"/>
+                                <state key="normal" title="Rotate CW">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="319" y="762" width="257" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="rotateCW:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xBO-MR-3rs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgt-vI-0rt">
+                                <rect key="frame" x="54" y="486" width="40" height="30"/>
+                                <state key="normal" title="Down">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="down:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Den-DG-Haf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p11-GA-VZs">
+                                <rect key="frame" x="59" y="448" width="30" height="30"/>
+                                <state key="normal" title="Up">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="up:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ud0-mJ-Wdq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IVf-N6-UDM">
+                                <rect key="frame" x="16" y="469" width="30" height="30"/>
+                                <state key="normal" title="Left">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="left:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LmM-qV-I6N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4t-6e-3iu">
+                                <rect key="frame" x="102" y="469" width="37" height="30"/>
+                                <state key="normal" title="Right">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="right:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Onv-nM-grb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgB-Tk-Sa1">
+                                <rect key="frame" x="544" y="562" width="40" height="30"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="16" y="762" width="40" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W1U-0y-l5R"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDE-LB-1R3">
+                                <rect key="frame" x="193" y="524" width="63" height="30"/>
+                                <state key="normal" title="Rotate In">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="rotateIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ln7-Vh-tOd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kl9-ws-ujG">
+                                <rect key="frame" x="264" y="524" width="75" height="30"/>
+                                <state key="normal" title="Rotate Out">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="rotateOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ndp-hN-UvA"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tvtest.png" translatesAutoresizingMaskIntoConstraints="NO" id="DTT-d6-6nE">
+                                <rect key="frame" x="200" y="224" width="200" height="152"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DTT-d6-6nE" secondAttribute="height" multiplier="758:576" id="7aC-up-S4s"/>
+                                    <constraint firstAttribute="width" constant="200" id="fPv-rd-yP0"/>
+                                </constraints>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="80" y="164" width="240" height="128"/>
+                                </variation>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fgt-vI-0rt" firstAttribute="top" secondItem="p11-GA-VZs" secondAttribute="bottom" constant="8" id="0P5-ZI-9rc"/>
+                            <constraint firstItem="amA-ge-6Uc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3GV-47-nxe"/>
+                            <constraint firstItem="JLB-mD-GTe" firstAttribute="centerX" secondItem="ow6-QS-yM6" secondAttribute="centerX" id="50p-EM-qVm"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LZn-qL-jdu" secondAttribute="bottom" constant="8" id="IIP-OZ-hqH"/>
+                            <constraint firstAttribute="centerY" secondItem="DTT-d6-6nE" secondAttribute="centerY" id="Mbe-ZT-38l"/>
+                            <constraint firstItem="vDE-LB-1R3" firstAttribute="leading" secondItem="JLB-mD-GTe" secondAttribute="trailing" constant="8" id="RfL-fR-auk"/>
+                            <constraint firstItem="ow6-QS-yM6" firstAttribute="top" secondItem="JLB-mD-GTe" secondAttribute="bottom" constant="8" id="YR2-3P-gZP"/>
+                            <constraint firstItem="JLB-mD-GTe" firstAttribute="leading" secondItem="amA-ge-6Uc" secondAttribute="trailing" constant="8" id="ZS7-9Y-L5U"/>
+                            <constraint firstItem="Kl9-ws-ujG" firstAttribute="leading" secondItem="vDE-LB-1R3" secondAttribute="trailing" constant="8" id="bGn-dD-Q6z"/>
+                            <constraint firstItem="fgt-vI-0rt" firstAttribute="centerX" secondItem="p11-GA-VZs" secondAttribute="centerX" id="bPB-Go-MI7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ow6-QS-yM6" secondAttribute="bottom" constant="8" id="bsZ-7e-SOh"/>
+                            <constraint firstItem="LZn-qL-jdu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="cuu-kA-f5Z">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="e4t-6e-3iu" firstAttribute="centerY" secondItem="IVf-N6-UDM" secondAttribute="centerY" id="i8z-DC-o6V"/>
+                            <constraint firstItem="Kl9-ws-ujG" firstAttribute="centerY" secondItem="vDE-LB-1R3" secondAttribute="centerY" id="iXv-PB-F7W"/>
+                            <constraint firstItem="IVf-N6-UDM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="kF6-T0-W21"/>
+                            <constraint firstItem="JLB-mD-GTe" firstAttribute="centerY" secondItem="vDE-LB-1R3" secondAttribute="centerY" id="lB0-aU-sxc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SgB-Tk-Sa1" secondAttribute="trailing" id="mOj-hz-p5B"/>
+                            <constraint firstAttribute="centerX" secondItem="DTT-d6-6nE" secondAttribute="centerX" id="ncI-nc-04t"/>
+                            <constraint firstItem="fgt-vI-0rt" firstAttribute="top" secondItem="e4t-6e-3iu" secondAttribute="bottom" constant="-13" id="ndC-UM-zTC"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SgB-Tk-Sa1" secondAttribute="bottom" constant="8" id="pNB-BD-9Qt"/>
+                            <constraint firstItem="JLB-mD-GTe" firstAttribute="top" secondItem="fgt-vI-0rt" secondAttribute="bottom" constant="8" id="qMr-P6-5dC"/>
+                            <constraint firstItem="e4t-6e-3iu" firstAttribute="leading" secondItem="fgt-vI-0rt" secondAttribute="trailing" constant="8" id="qS2-nK-KOh"/>
+                            <constraint firstItem="fgt-vI-0rt" firstAttribute="leading" secondItem="IVf-N6-UDM" secondAttribute="trailing" constant="8" id="vZh-Pr-wNC"/>
+                            <constraint firstItem="LZn-qL-jdu" firstAttribute="top" secondItem="amA-ge-6Uc" secondAttribute="bottom" constant="8" id="w5a-H0-j9P"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="image" destination="DTT-d6-6nE" id="OY5-32-vyy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="tvtest.png" width="768" height="576"/>
+    </resources>
 </document>

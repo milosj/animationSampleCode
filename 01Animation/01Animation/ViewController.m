@@ -113,5 +113,13 @@
     }];
 }
 
+- (IBAction)constrainedButtonTap:(UIButton*)sender {
+    [UIView animateWithDuration:0.5f animations:^{
+//        sender.transform = CGAffineTransformMakeScale(2.0, 2.0);  //preserved after constraints applied
+        sender.bounds = CGRectMake(0, 0, 156, 100); //not preserved after constraints applied
+//        sender.transform = CGAffineTransformMakeTranslation(100, 100); //preserved after constraints applied
+//        sender.center = CGPointMake(139, 125); //not preserved after constraints applied
+    }];
+}
 
 @end

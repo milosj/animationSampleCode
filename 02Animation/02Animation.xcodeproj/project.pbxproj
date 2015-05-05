@@ -14,6 +14,7 @@
 		E6EA28F81AF56C7500586C31 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6EA28F71AF56C7500586C31 /* Images.xcassets */; };
 		E6EA28FB1AF56C7500586C31 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6EA28F91AF56C7500586C31 /* LaunchScreen.xib */; };
 		E6EA29071AF56C7500586C31 /* _2AnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EA29061AF56C7500586C31 /* _2AnimationTests.m */; };
+		E6EA29111AF69BB600586C31 /* tvtest.png in Resources */ = {isa = PBXBuildFile; fileRef = E6EA29101AF69BB600586C31 /* tvtest.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		E6EA29001AF56C7500586C31 /* 02AnimationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 02AnimationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6EA29051AF56C7500586C31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6EA29061AF56C7500586C31 /* _2AnimationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _2AnimationTests.m; sourceTree = "<group>"; };
+		E6EA29101AF69BB600586C31 /* tvtest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tvtest.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				E6EA28F21AF56C7500586C31 /* ViewController.m */,
 				E6EA28F41AF56C7500586C31 /* Main.storyboard */,
 				E6EA28F71AF56C7500586C31 /* Images.xcassets */,
+				E6EA29101AF69BB600586C31 /* tvtest.png */,
 				E6EA28F91AF56C7500586C31 /* LaunchScreen.xib */,
 				E6EA28EA1AF56C7500586C31 /* Supporting Files */,
 			);
@@ -202,6 +205,7 @@
 				E6EA28F61AF56C7500586C31 /* Main.storyboard in Resources */,
 				E6EA28FB1AF56C7500586C31 /* LaunchScreen.xib in Resources */,
 				E6EA28F81AF56C7500586C31 /* Images.xcassets in Resources */,
+				E6EA29111AF69BB600586C31 /* tvtest.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
