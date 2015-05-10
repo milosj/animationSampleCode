@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -133,7 +132,7 @@
                                     <action selector="rotateOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ndp-hN-UvA"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tvtest.png" translatesAutoresizingMaskIntoConstraints="NO" id="DTT-d6-6nE">
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tvtest.png" translatesAutoresizingMaskIntoConstraints="NO" id="DTT-d6-6nE">
                                 <rect key="frame" x="200" y="224" width="200" height="152"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DTT-d6-6nE" secondAttribute="height" multiplier="758:576" id="7aC-up-S4s"/>
@@ -143,14 +142,32 @@
                                     <rect key="frame" x="80" y="164" width="240" height="128"/>
                                 </variation>
                             </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1000" minValue="50" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="1pa-un-gVT">
+                                <rect key="frame" x="468" y="469" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="04g-EN-vkp"/>
+                                    <constraint firstAttribute="height" constant="30" id="psC-li-6Yb"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="perspectiveChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="wS8-EM-R4R"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Perspective" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Br8-Hv-7Jg">
+                                <rect key="frame" x="482" y="440" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fgt-vI-0rt" firstAttribute="top" secondItem="p11-GA-VZs" secondAttribute="bottom" constant="8" id="0P5-ZI-9rc"/>
                             <constraint firstItem="amA-ge-6Uc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3GV-47-nxe"/>
                             <constraint firstItem="JLB-mD-GTe" firstAttribute="centerX" secondItem="ow6-QS-yM6" secondAttribute="centerX" id="50p-EM-qVm"/>
+                            <constraint firstItem="1pa-un-gVT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Bh8-iq-YRp"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LZn-qL-jdu" secondAttribute="bottom" constant="8" id="IIP-OZ-hqH"/>
                             <constraint firstAttribute="centerY" secondItem="DTT-d6-6nE" secondAttribute="centerY" id="Mbe-ZT-38l"/>
+                            <constraint firstItem="1pa-un-gVT" firstAttribute="centerX" secondItem="Br8-Hv-7Jg" secondAttribute="centerX" id="Mqr-lh-WDY"/>
                             <constraint firstItem="vDE-LB-1R3" firstAttribute="leading" secondItem="JLB-mD-GTe" secondAttribute="trailing" constant="8" id="RfL-fR-auk"/>
                             <constraint firstItem="ow6-QS-yM6" firstAttribute="top" secondItem="JLB-mD-GTe" secondAttribute="bottom" constant="8" id="YR2-3P-gZP"/>
                             <constraint firstItem="JLB-mD-GTe" firstAttribute="leading" secondItem="amA-ge-6Uc" secondAttribute="trailing" constant="8" id="ZS7-9Y-L5U"/>
@@ -164,10 +181,12 @@
                             <constraint firstItem="Kl9-ws-ujG" firstAttribute="centerY" secondItem="vDE-LB-1R3" secondAttribute="centerY" id="iXv-PB-F7W"/>
                             <constraint firstItem="IVf-N6-UDM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="kF6-T0-W21"/>
                             <constraint firstItem="JLB-mD-GTe" firstAttribute="centerY" secondItem="vDE-LB-1R3" secondAttribute="centerY" id="lB0-aU-sxc"/>
+                            <constraint firstItem="1pa-un-gVT" firstAttribute="top" secondItem="Br8-Hv-7Jg" secondAttribute="bottom" constant="8" id="lRb-OY-M49"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SgB-Tk-Sa1" secondAttribute="trailing" id="mOj-hz-p5B"/>
                             <constraint firstAttribute="centerX" secondItem="DTT-d6-6nE" secondAttribute="centerX" id="ncI-nc-04t"/>
                             <constraint firstItem="fgt-vI-0rt" firstAttribute="top" secondItem="e4t-6e-3iu" secondAttribute="bottom" constant="-13" id="ndC-UM-zTC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SgB-Tk-Sa1" secondAttribute="bottom" constant="8" id="pNB-BD-9Qt"/>
+                            <constraint firstItem="1pa-un-gVT" firstAttribute="centerY" secondItem="e4t-6e-3iu" secondAttribute="centerY" id="puQ-A1-zey"/>
                             <constraint firstItem="JLB-mD-GTe" firstAttribute="top" secondItem="fgt-vI-0rt" secondAttribute="bottom" constant="8" id="qMr-P6-5dC"/>
                             <constraint firstItem="e4t-6e-3iu" firstAttribute="leading" secondItem="fgt-vI-0rt" secondAttribute="trailing" constant="8" id="qS2-nK-KOh"/>
                             <constraint firstItem="fgt-vI-0rt" firstAttribute="leading" secondItem="IVf-N6-UDM" secondAttribute="trailing" constant="8" id="vZh-Pr-wNC"/>

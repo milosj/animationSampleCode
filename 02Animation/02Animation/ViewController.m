@@ -137,6 +137,12 @@
     [self animateImageFromTransformation:from toTransformation:to];
 }
 
+- (IBAction)perspectiveChanged:(UISlider*)sender {
+    CATransform3D t = CATransform3DIdentity;
+    t.m34 = 1.0/-sender.value;
+    self.view.layer.sublayerTransform = t;
+
+}
 
 
 
