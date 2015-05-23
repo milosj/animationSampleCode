@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,32 +86,62 @@
 //        translationStep++;
 //    }];
 
-    //example 5: full animation call
+//    //example 5: full animation call
+//    static int translationStep = 0;
+//    [UIView animateWithDuration:0.5f delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+//        switch (translationStep) {
+//            case 0:
+//                aButton.transform = CGAffineTransformMakeTranslation(-100, 0);
+//                break;
+//            case 1:
+//                aButton.transform = CGAffineTransformMakeRotation(90.f);
+//                break;
+//            case 2:
+//                aButton.transform = CGAffineTransformMakeScale(3.0f, 3.0f);
+//                break;
+//            default:
+//                break;
+//        }
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.3f animations:^{
+//            aButton.transform = CGAffineTransformIdentity;
+//            if (translationStep < 2) {
+//                translationStep++;
+//            } else {
+//                translationStep = 0;
+//            }
+//        }];
+//    }];
+    
+    //example 6: combining transformations
     static int translationStep = 0;
     [UIView animateWithDuration:0.5f delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         switch (translationStep) {
             case 0:
                 aButton.transform = CGAffineTransformMakeTranslation(-100, 0);
+                aButton.transform = CGAffineTransformRotate(aButton.transform, 45.f);
                 break;
             case 1:
-                aButton.transform = CGAffineTransformMakeRotation(90.f);
+                aButton.transform = CGAffineTransformIdentity;
                 break;
             case 2:
-                aButton.transform = CGAffineTransformMakeScale(3.0f, 3.0f);
+                aButton.transform = CGAffineTransformMakeRotation(45.f);
+                aButton.transform = CGAffineTransformTranslate(aButton.transform, -100, 0);
                 break;
             default:
                 break;
         }
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.3f animations:^{
-            aButton.transform = CGAffineTransformIdentity;
-            if (translationStep < 2) {
-                translationStep++;
-            } else {
-                translationStep = 0;
-            }
-        }];
+        if (translationStep < 3) {
+            translationStep++;
+        } else {
+            translationStep = 0;
+            [UIView animateWithDuration:0.3f animations:^{
+                aButton.transform = CGAffineTransformIdentity;
+            }];
+        }
     }];
+    
 }
 
 - (IBAction)constrainedButtonTap:(UIButton*)sender {
