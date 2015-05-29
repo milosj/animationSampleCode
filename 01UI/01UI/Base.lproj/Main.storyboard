@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E17e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbr-37-YQH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="tvtest.png" translatesAutoresizingMaskIntoConstraints="NO" id="vea-QG-0gE">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="576"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="282" id="GIT-oK-F4b"/>
+                                            <constraint firstAttribute="width" constant="375" id="SSy-G7-8zS"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="GIT-oK-F4b"/>
+                                                <exclude reference="SSy-G7-8zS"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="GIT-oK-F4b"/>
+                                                <include reference="SSy-G7-8zS"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="vea-QG-0gE" secondAttribute="bottom" id="0on-Bt-6YR"/>
+                                    <constraint firstAttribute="trailing" secondItem="vea-QG-0gE" secondAttribute="trailing" id="5kO-TQ-gA0"/>
+                                    <constraint firstItem="vea-QG-0gE" firstAttribute="leading" secondItem="qbr-37-YQH" secondAttribute="leading" id="Fhb-99-Ilf"/>
+                                    <constraint firstItem="vea-QG-0gE" firstAttribute="top" secondItem="qbr-37-YQH" secondAttribute="top" id="Get-aj-ugQ"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5kO-TQ-gA0"/>
+                                        <exclude reference="Fhb-99-Ilf"/>
+                                        <exclude reference="Get-aj-ugQ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="5kO-TQ-gA0"/>
+                                        <include reference="Fhb-99-Ilf"/>
+                                        <include reference="Get-aj-ugQ"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="7cj-N2-Fas"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qbr-37-YQH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="COT-Rt-G8S"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qbr-37-YQH" secondAttribute="bottom" id="N1u-Zn-9Mt"/>
+                            <constraint firstItem="qbr-37-YQH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="oiT-v8-mhV"/>
+                            <constraint firstAttribute="trailing" secondItem="qbr-37-YQH" secondAttribute="trailing" id="tp7-lA-Ygd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="vea-QG-0gE" id="RWF-zT-V6A"/>
+                        <outlet property="scrollView" destination="qbr-37-YQH" id="I36-4b-M1H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="343.5" y="378.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="tvtest.png" width="375" height="282"/>
+    </resources>
+</document>
