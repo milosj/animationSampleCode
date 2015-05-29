@@ -14,7 +14,7 @@
 @property (strong, nonatomic) CIFilter* bump;
 @property (strong, nonatomic) CIContext *context;
 @property (strong, nonatomic) NSOperationQueue* workQueue;
-@property (assign, nonatomic) CGFloat lastGeneratedY;
+
 @end
 
 @implementation TableViewController
@@ -85,7 +85,9 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 
-    
+    //user began dragging - grab the screen and save it
+    CGPoint previousOffset = scrollView.contentOffset;
+    scrollView.contentOffset = CGPointZero; //we want the image of the top of the scrollview content
     UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
     [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
     
@@ -96,13 +98,17 @@
     CIImage* cimg = [[CIImage alloc] initWithCGImage:cgImage];
     [self.bump setValue:cimg forKey:kCIInputImageKey];
     self.imageView.image = img;
+    scrollView.contentOffset = previousOffset; //return the scrollview to where it was
 
+    //show the mask (which hides the table view and provides white background)
+    //show the imageView that will contain our filtered image
     self.maskView.hidden = NO;
     self.imageView.hidden = NO;
 
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    //hide our special views and go back to the tableview
     self.maskView.hidden = YES;
     self.imageView.hidden = YES;
 
@@ -112,7 +118,7 @@
     CGFloat dY = scrollView.contentOffset.y;
     if (dY < 0) { //if pulling down
         if (self.workQueue.operationCount < 3) { //we'll keep a number of operations to a minimum to reduce lag
-            self.lastGeneratedY = dY;
+
             [self.workQueue addOperationWithBlock:^{
                 //find where the user's finger is
                 CGPoint touchPoint = [scrollView.panGestureRecognizer locationInView:scrollView];
