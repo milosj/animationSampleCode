@@ -65,6 +65,7 @@
                 //transform it into something we can use
                 CGImageRef cgImage = [self.context createCGImage:result fromRect:result.extent];
                 UIImage* filteredImage = [UIImage imageWithCGImage:cgImage];
+                CGImageRelease(cgImage);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //update the imageView
                     self.imageView.image = filteredImage;

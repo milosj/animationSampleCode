@@ -85,7 +85,7 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 
-
+    
     UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
     [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
     
