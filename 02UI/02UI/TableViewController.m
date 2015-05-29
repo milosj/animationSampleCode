@@ -85,20 +85,17 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 
-    static BOOL didGetImage = NO;
-    if (!didGetImage) {
-        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
-        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-        
-        UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-        CGImageRef cgImage = img.CGImage;
-        CIImage* cimg = [[CIImage alloc] initWithCGImage:cgImage];
-        [self.bump setValue:cimg forKey:kCIInputImageKey];
-        self.imageView.image = img;
-        didGetImage = YES;
-    }
+
+    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    CGImageRef cgImage = img.CGImage;
+    CIImage* cimg = [[CIImage alloc] initWithCGImage:cgImage];
+    [self.bump setValue:cimg forKey:kCIInputImageKey];
+    self.imageView.image = img;
 
     self.maskView.hidden = NO;
     self.imageView.hidden = NO;
