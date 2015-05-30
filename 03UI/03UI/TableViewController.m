@@ -15,7 +15,7 @@
 @property (strong, nonatomic) CIContext *context;
 @property (strong, nonatomic) NSOperationQueue* workQueue;
 @property (assign, nonatomic) CGPoint lastTouchPoint;
-
+@property (strong, nonatomic) NSMutableDictionary* images;
 @property (strong, nonatomic) NSArray* data;
 
 @end
@@ -35,8 +35,7 @@
     //set up a filter instance and context
     //we want to do only once for perfomance reasons
     self.bump = [CIFilter filterWithName:@"CIHoleDistortion"];
-    [self.bump setValue:[CIVector vectorWithCGPoint:CGPointMake(187, 282)] forKey:kCIInputCenterKey];
-    [self.bump setValue:@100 forKey:kCIInputRadiusKey];
+    [self.bump setValue:@200 forKey:kCIInputRadiusKey];
     self.context = [CIContext contextWithOptions:nil];
 
     //set up a background queue to do CI work
@@ -51,6 +50,7 @@
     self.imageView.hidden = YES;
     [self.view addSubview:self.imageView];
     
+    self.images = [NSMutableDictionary new];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSURL* url = [NSURL URLWithString:@"http://cbc.ca/json/cmlink/1.3084190"];
@@ -78,6 +78,10 @@
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return floorf(0.75f*CGRectGetWidth(tableView.frame));
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     // Return the number of sections.
@@ -92,21 +96,28 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSArray* sizes = [self.data[indexPath.row] objectForKey:@"imageFiles"];
-        NSDictionary* bestSize = [sizes lastObject];
-        NSURL* url = [NSURL URLWithString:bestSize[@"file"]];
-        NSData* imgData = [NSData dataWithContentsOfURL:url];
-        UIImage* img = [UIImage imageWithData:imgData];
-        if ([tableView.visibleCells containsObject:cell]) {
+    UILabel* label = (UILabel*)[cell viewWithTag:2];
+    label.text = [self.data[indexPath.row] objectForKey:@"imageTitle"];
+    UIImageView* imageView = (UIImageView*)[cell viewWithTag:1];
+    if (self.images[indexPath]) {
+        imageView.image = self.images[indexPath];
+    } else {
+        imageView.image = nil;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSArray* sizes = [self.data[indexPath.row] objectForKey:@"imageFiles"];
+            NSDictionary* bestSize = [sizes lastObject];
+            NSURL* url = [NSURL URLWithString:bestSize[@"file"]];
+            NSData* imgData = [NSData dataWithContentsOfURL:url];
+            UIImage* img = [UIImage imageWithData:imgData];
             dispatch_async(dispatch_get_main_queue(), ^{
-                UIImageView* imageView = (UIImageView*)[cell viewWithTag:1];
-                imageView.image = img;
+                self.images[indexPath] = img;
+                if ([tableView.indexPathsForVisibleRows containsObject:indexPath]) {
+                    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
             });
-        }
-    });
-    
-    
+        });
+    }
+
     return cell;
 }
 
@@ -149,17 +160,18 @@
     if (dY < 0) { //if pulling down
         //show the mask (which hides the table view and provides white background)
         //show the imageView that will contain our filtered image
+        
         self.maskView.hidden = NO;
         self.imageView.hidden = NO;
         if (self.workQueue.operationCount < 10) { //we'll keep a number of operations to a minimum to reduce lag
             //find where the user's finger is
             CGPoint touchPoint = [scrollView.panGestureRecognizer locationInView:scrollView];
-            if (powf(powf(self.lastTouchPoint.x-touchPoint.x,2.0f) + powf(self.lastTouchPoint.y-touchPoint.y,2.0f),0.5f) > 5.0f) {
+            if (powf(powf(self.lastTouchPoint.x-touchPoint.x,2.0f) + powf(self.lastTouchPoint.y-touchPoint.y,2.0f),0.5f) > 5.0f) { //render only if user has moved enough pixels
                 [self.workQueue addOperationWithBlock:^{
                     //center the distortion above the finger
-                    [self.bump setValue:[CIVector vectorWithCGPoint:CGPointMake(touchPoint.x*self.traitCollection.displayScale, self.view.frame.size.height*self.traitCollection.displayScale)] forKey:kCIInputCenterKey];
+                    [self.bump setValue:[CIVector vectorWithCGPoint:CGPointMake(touchPoint.x*self.traitCollection.displayScale, self.view.frame.size.height*self.traitCollection.displayScale-dY)] forKey:kCIInputCenterKey];
                     //increase the radius of the distortion the more the user pulls the scroll view
-                    [self.bump setValue:[NSNumber numberWithFloat:-MIN(150, dY)] forKey:kCIInputRadiusKey];
+                    [self.bump setValue:[NSNumber numberWithFloat:-2*dY] forKey:kCIInputRadiusKey];
                     //get the filtered image
                     CIImage *result = [self.bump valueForKey:kCIOutputImageKey];
                     //transform it into something we can use
