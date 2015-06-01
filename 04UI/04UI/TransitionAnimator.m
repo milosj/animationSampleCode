@@ -10,6 +10,8 @@
 #import "ViewController.h"
 #import "TransitionAnimator.h"
 
+#define ANIM_MULTIPLIER 3.0f
+
 
 @interface TransitionAnimator()
 
@@ -22,7 +24,7 @@
 
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.75f;
+    return ANIM_MULTIPLIER*1.0f;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -73,22 +75,22 @@
     [container insertSubview:vc.view belowSubview:transitionImageView];
 
     
-    [UIView animateWithDuration:1.25f animations:^{
+    [UIView animateWithDuration:ANIM_MULTIPLIER* 0.25f animations:^{
         transitionImageView.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(1.2f, 1.2f), 0.0f, 10.0f);
         transitionLabel.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(1.2f, 1.2f), 0.0f, 10.0f);
         shadowView.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(1.2f, 1.2f), 0.0f, 10.0f);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1.25f animations:^{
+        [UIView animateWithDuration:ANIM_MULTIPLIER*0.25f animations:^{
             vc.view.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:1.25f animations:^{
+            [UIView animateWithDuration:ANIM_MULTIPLIER*0.25f animations:^{
                 transitionImageView.transform = CGAffineTransformIdentity;
                 transitionLabel.transform = CGAffineTransformIdentity;
                 shadowView.transform = CGAffineTransformIdentity;
                 [vc viewWillAppear:YES];
             } completion:^(BOOL finished) {
-                [UIView animateWithDuration:1.25f animations:^{
-                    shadowView.transform =                 CGAffineTransformScale(CGAffineTransformTranslate(shadowView.transform, 0.0f, shadowView.frame.size.height), 1.0f, 0.0001f) ;
+                [UIView animateWithDuration:ANIM_MULTIPLIER*0.25f animations:^{
+                    shadowView.transform =                 CGAffineTransformScale(CGAffineTransformMakeTranslation(0.0f, shadowView.frame.size.height), 1.0f, 0.0001f) ;
 
                     transitionImageView.center = [container convertPoint:vc.imageView.center fromView:vc.view];
                     transitionLabel.center = [container convertPoint:vc.label.center fromView:vc.view];
