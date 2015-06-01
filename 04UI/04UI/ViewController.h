@@ -13,6 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
+@property (strong, nonatomic) UIImage* image;
+@property (strong, nonatomic) NSString* text;
 @end
 

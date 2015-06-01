@@ -31,76 +31,158 @@
  
     TableViewController* tableView;
     ViewController* vc;
+    
+    UIViewController* sourceVC;
+    UIImageView* sourceImage;
+    UILabel* sourceLabel;
+    UIView* sourceShadow;
+    UIView* sourceContainer;
+    
+    UIViewController* targetVC;
+    UIImageView* targetImage;
+    UILabel* targetLabel;
+    UIView* targetShadow;
+    UIView* targetContainer;
+    
+    BOOL forwardTransition;
+    
     if ([[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] isKindOfClass:[TableViewController class]]) {
         tableView = (TableViewController*)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         vc = (ViewController*)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        
+        sourceVC = tableView;
+        targetVC = vc;
+        
+        sourceContainer = [tableView.tableView cellForRowAtIndexPath:tableView.transitionRow];
+        sourceImage = (UIImageView*)[sourceContainer viewWithTag:1];
+        sourceLabel = (UILabel*)[sourceContainer viewWithTag:2];
+        sourceShadow = [sourceContainer viewWithTag:3];
+        
+        targetContainer = vc.scrollView;
+        targetImage = vc.imageView;
+        targetLabel = vc.label;
+        targetShadow = nil;
+        
+        forwardTransition = YES;
     } else {
         tableView = (TableViewController*)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         vc = (ViewController*)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        
+        sourceVC = vc;
+        targetVC = tableView;
+        
+        targetContainer = [tableView.tableView cellForRowAtIndexPath:tableView.transitionRow];
+        targetImage = (UIImageView*)[targetContainer viewWithTag:1];
+        targetLabel = (UILabel*)[targetContainer viewWithTag:2];
+        targetShadow = [targetContainer viewWithTag:3];
+        
+        sourceContainer = vc.scrollView;
+        sourceImage = vc.imageView;
+        sourceLabel = vc.label;
+        sourceShadow = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(sourceImage.frame), CGRectGetMaxY(sourceImage.frame), CGRectGetWidth(sourceImage.frame), CGRectGetHeight(targetShadow.frame))];
+        
+        forwardTransition = NO;
     }
+    sourceImage.hidden = YES;
+    sourceLabel.hidden = YES;
+    sourceShadow.hidden = YES;
+
+    
     UIView* container = transitionContext.containerView;
     self.transitionContext = transitionContext;
-
-    UITableViewCell* cell = [tableView.tableView cellForRowAtIndexPath:[tableView.tableView indexPathForSelectedRow]];
-    UIImageView* cellImage = (UIImageView*)[cell viewWithTag:1];
-    UILabel* cellLabel = (UILabel*)[cell viewWithTag:2];
-    UIView* cellShadow = [cell viewWithTag:3];
     
     UIImageView* transitionImageView = [UIImageView new];
-    transitionImageView.image = cellImage.image;
-    transitionImageView.bounds = cellImage.bounds;
-    transitionImageView.center = [container convertPoint:cellImage.center fromView:cell];
+    transitionImageView.image = sourceImage.image;
+    transitionImageView.bounds = sourceImage.bounds;
+    transitionImageView.center = [container convertPoint:sourceImage.center fromView:sourceContainer];
     [container addSubview:transitionImageView];
     
-    UIView* shadowView = [UIView new];
-    shadowView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
-    shadowView.bounds = cellShadow.bounds;
-    shadowView.center = [container convertPoint:cellShadow.center fromView:cell];
-    [container addSubview:shadowView];
+    UIView* transitionShadow = [UIView new];
+    transitionShadow.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+    transitionShadow.bounds = sourceShadow.bounds;
+    transitionShadow.center = [container convertPoint:sourceShadow.center fromView:sourceContainer];
+    [container addSubview:transitionShadow];
     
     UILabel* transitionLabel = [UILabel new];
-    transitionLabel.text = cellLabel.text;
-    transitionLabel.font = cellLabel.font;
-    transitionLabel.textAlignment = cellLabel.textAlignment;
-    transitionLabel.textColor = cellLabel.textColor;
-    transitionLabel.bounds = cellLabel.bounds;
-    transitionLabel.center = [container convertPoint:cellLabel.center fromView:cell];
+    transitionLabel.text = sourceLabel.text;
+    transitionLabel.font = sourceLabel.font;
+    transitionLabel.textAlignment = sourceLabel.textAlignment;
+    transitionLabel.textColor = sourceLabel.textColor;
+    transitionLabel.bounds = sourceLabel.bounds;
+    transitionLabel.center = [container convertPoint:sourceLabel.center fromView:sourceContainer];
     [container addSubview:transitionLabel];
 
+    targetImage.hidden = YES;
+    targetLabel.hidden = YES;
+    targetShadow.hidden = YES;
     
-    vc.imageView.hidden = YES;
-    vc.label.hidden = YES;
-    vc.view.transform = CGAffineTransformMakeTranslation(0.0f, vc.view.frame.size.height);
-
-    [container insertSubview:vc.view belowSubview:transitionImageView];
+    if (targetVC == vc) {
+        targetVC.view.transform = CGAffineTransformMakeTranslation(0.0f, targetVC.view.frame.size.height);
+        UIGraphicsBeginImageContextWithOptions(sourceVC.view.bounds.size, sourceVC.view.opaque, 0.0);
+        [sourceVC.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        vc.backgroundImageView.hidden = YES;
+        vc.backgroundImageView.image = img;
+    }
+    
+    if (forwardTransition) {
+        [container insertSubview:targetVC.view belowSubview:transitionImageView];
+    } else {
+        [container insertSubview:targetVC.view belowSubview:sourceVC.view];
+    }
+    
 
     
     [UIView animateWithDuration:ANIM_MULTIPLIER* 0.25f animations:^{
+        
+        if (!forwardTransition) {
+            transitionImageView.center = [container convertPoint:targetImage.center fromView:targetContainer];
+            transitionLabel.center = [container convertPoint:targetLabel.center fromView:targetContainer];
+            transitionShadow.center = [container convertPoint:targetShadow.center fromView:targetContainer];
+            
+        }
+        transitionImageView.alpha = 0.8f;
         transitionImageView.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(1.2f, 1.2f), 0.0f, 10.0f);
         transitionLabel.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(1.2f, 1.2f), 0.0f, 10.0f);
-        shadowView.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(1.2f, 1.2f), 0.0f, 10.0f);
+        transitionShadow.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(1.2f, 1.2f), 0.0f, 10.0f);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:ANIM_MULTIPLIER*0.25f animations:^{
-            vc.view.transform = CGAffineTransformIdentity;
+
+            if (forwardTransition) {
+                targetVC.view.transform = CGAffineTransformIdentity;
+            } else {
+                sourceVC.view.transform = CGAffineTransformMakeTranslation(0.0f, targetVC.view.frame.size.height);
+            }
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:ANIM_MULTIPLIER*0.25f animations:^{
-                transitionImageView.transform = CGAffineTransformIdentity;
-                transitionLabel.transform = CGAffineTransformIdentity;
-                shadowView.transform = CGAffineTransformIdentity;
-                [vc viewWillAppear:YES];
+                if (forwardTransition) {
+                    transitionShadow.transform = CGAffineTransformIdentity;
+                    transitionShadow.alpha = 0.0f;
+                } else {
+                    transitionShadow.bounds = targetShadow.bounds;
+                }
+                transitionImageView.center = [container convertPoint:targetImage.center fromView:targetContainer];
+                transitionLabel.center = [container convertPoint:targetLabel.center fromView:targetContainer];
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:ANIM_MULTIPLIER*0.25f animations:^{
-                    shadowView.transform =                 CGAffineTransformScale(CGAffineTransformMakeTranslation(0.0f, shadowView.frame.size.height), 1.0f, 0.0001f) ;
-
-                    transitionImageView.center = [container convertPoint:vc.imageView.center fromView:vc.view];
-                    transitionLabel.center = [container convertPoint:vc.label.center fromView:vc.view];
-                            transitionLabel.textColor = vc.label.textColor;
+                    transitionImageView.alpha = 1.0f;
+                    
+                    transitionImageView.transform = CGAffineTransformIdentity;
+                    transitionLabel.transform = CGAffineTransformIdentity;
+                    transitionShadow.transform = CGAffineTransformIdentity;
+                    
                 } completion:^(BOOL finished) {
-                    vc.imageView.hidden = NO;
-                    vc.label.hidden = NO;
+                    if (targetVC == vc) {
+                        vc.backgroundImageView.hidden = NO;
+                    }
+                    targetImage.hidden = NO;
+                    targetLabel.hidden = NO;
+                    targetShadow.hidden = NO;
                     [transitionImageView removeFromSuperview];
                     [transitionLabel removeFromSuperview];
-                    [vc viewDidAppear:YES];
+                    [transitionShadow removeFromSuperview];
+                    [transitionContext completeTransition:YES];
                 }];
             }];
             

@@ -141,9 +141,6 @@
     [self.bump setValue:cimg forKey:kCIInputImageKey];
     self.imageView.image = img;
     scrollView.contentOffset = previousOffset; //return the scrollview to where it was
-
-
-
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -233,12 +230,13 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     NSIndexPath* selectedCellIndexPath = [self.tableView indexPathForCell:sender];
-    
+    self.transitionRow = selectedCellIndexPath;
+//    [self.tableView scrollToRowAtIndexPath:selectedCellIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     ViewController* vc = (ViewController*)segue.destinationViewController;
-    [vc loadView];
-//    ((UIScrollView*)vc.view).contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
-    vc.imageView.image = self.images[selectedCellIndexPath];
-    vc.label.text = [self.data[selectedCellIndexPath.row] objectForKey:@"imageTitle"];
+
+    vc.image = self.images[selectedCellIndexPath];
+    vc.text = [self.data[selectedCellIndexPath.row] objectForKey:@"imageTitle"];
+    
 }
 
 

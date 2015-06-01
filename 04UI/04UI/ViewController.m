@@ -17,13 +17,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.imageView.image = self.image;
+    self.label.text = self.text;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    UIWindow* window = [UIApplication sharedApplication].keyWindow;
-//    [self.scrollView setContentSize:CGSizeMake(window.frame.size.width, window.frame.size.height)];
-//    [self.view layoutIfNeeded];
+    UIWindow* window = [UIApplication sharedApplication].keyWindow;
+    [self.scrollView setContentSize:CGSizeMake(window.frame.size.width, window.frame.size.height)];
+    [self.view layoutIfNeeded];
     
 }
 
