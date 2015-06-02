@@ -70,8 +70,8 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    self.maskView.frame = self.view.bounds;
-    self.imageView.frame = self.view.bounds;
+    self.maskView.frame = CGRectMake(0, self.collectionView.contentInset.top, self.view.frame.size.width, self.view.frame.size.height);
+    self.imageView.frame = self.maskView.frame;
     [self.collectionView reloadData];
     
 }
@@ -170,23 +170,25 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UIScrollViewDelegate>
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    self.maskView.hidden = YES;
-    self.imageView.hidden = YES;
-    
-    //user began dragging - grab the screen and save it
-    CGPoint previousOffset = scrollView.contentOffset;
-    scrollView.contentOffset = CGPointZero; //we want the image of the top of the scrollview content
-    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    
-    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    CGImageRef cgImage = img.CGImage;
-    CIImage* cimg = [[CIImage alloc] initWithCGImage:cgImage];
-    [self.bump setValue:cimg forKey:kCIInputImageKey];
-    self.imageView.image = img;
-    scrollView.contentOffset = previousOffset; //return the scrollview to where it was
+    if ([self.collectionView numberOfItemsInSection:0] > 0) {
+        self.maskView.hidden = YES;
+        self.imageView.hidden = YES;
+        
+        //user began dragging - grab the screen and save it
+        CGPoint previousOffset = scrollView.contentOffset;
+        scrollView.contentOffset = CGPointZero; //we want the image of the top of the scrollview content
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
+        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        
+        UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        CGImageRef cgImage = img.CGImage;
+        CIImage* cimg = [[CIImage alloc] initWithCGImage:cgImage];
+        [self.bump setValue:cimg forKey:kCIInputImageKey];
+        self.imageView.image = img;
+        scrollView.contentOffset = previousOffset; //return the scrollview to where it was
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -202,13 +204,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat dY = scrollView.contentOffset.y;
-    if (dY < 0) { //if pulling down
+    if ([self.collectionView numberOfItemsInSection:0] > 0 && dY < -self.collectionView.contentInset.top) { //if pulling down
         //show the mask (which hides the collection view and provides white background)
         //show the imageView that will contain our filtered image
         
-        //        self.maskView.hidden = NO;
-        //        self.imageView.hidden = NO;
-        if (self.workQueue.operationCount < 0) { //we'll keep a number of operations to a minimum to reduce lag
+        self.maskView.hidden = NO;
+        self.imageView.hidden = NO;
+        if (self.workQueue.operationCount < 10) { //we'll keep a number of operations to a minimum to reduce lag
             //find where the user's finger is
             CGPoint touchPoint = [scrollView.panGestureRecognizer locationInView:scrollView];
             if (powf(powf(self.lastTouchPoint.x-touchPoint.x,2.0f) + powf(self.lastTouchPoint.y-touchPoint.y,2.0f),0.5f) > 5.0f) { //render only if user has moved enough pixels

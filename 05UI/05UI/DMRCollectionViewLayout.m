@@ -26,7 +26,7 @@ static NSUInteger kColumnTypeDefault    = 1;   // 33% collectionView width
     self = [super init];
     if (self)
     {
-        [self setItemOffset:UIOffsetMake(6.0, 6.0)];
+        [self setItemOffset:UIOffsetMake(0.0, 0.0)];
     }
     return self;
 }
@@ -45,15 +45,13 @@ static NSUInteger kColumnTypeDefault    = 1;   // 33% collectionView width
     CGFloat contentWidth = 0.0;         // Used to determine the contentSize
     CGFloat contentHeight = 0.0;        // Used to determine the contentSize
     
-    // We'll create a dynamic layout. Each row will have a random number of columns
-    srandom(1);
-    NSUInteger numberOfColumnsInRow = random() % 6+3;
+    NSUInteger numberOfColumnsInRow = 1;
     
     // Loop through all items and calculate the UICollectionViewLayoutAttributes for each one
     NSUInteger numberOfItems = [self.collectionView numberOfItemsInSection:0];    
     for (NSUInteger index = 0; index < numberOfItems; index++)
     {        
-        CGSize itemSize = [self sizeForItemWithColumnType:random() % 2];
+        CGSize itemSize = [self sizeForItemWithColumnType:((index == 0) || (index % 3 ==0)) ? kColumnTypeLarge : kColumnTypeDefault];
         if (itemSize.height > rowHeight)
             rowHeight = itemSize.height;
         
@@ -63,7 +61,7 @@ static NSUInteger kColumnTypeDefault    = 1;   // 33% collectionView width
         attributes.frame = CGRectIntegral(CGRectMake(xOffset, yOffset, itemSize.width, itemSize.height));
         [_itemAttributes addObject:attributes];
         
-        
+        NSLog(@"index: %d, column %d/%lu", index, column, (unsigned long)numberOfColumnsInRow);
         xOffset = xOffset+itemSize.width+_itemOffset.horizontal;
         column++;
         
@@ -77,9 +75,9 @@ static NSUInteger kColumnTypeDefault    = 1;   // 33% collectionView width
             column = 0;
             xOffset = _itemOffset.horizontal;
             yOffset += rowHeight+_itemOffset.vertical;
-            
+            rowHeight = 0;
             // Determine how much columns the new row will have
-            numberOfColumnsInRow = arc4random() % 6+3;
+            numberOfColumnsInRow = ((index+1) % 3 == 0) ? 1 : 2;
         }
     }
     
