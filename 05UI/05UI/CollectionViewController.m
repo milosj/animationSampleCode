@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DMRCollectionViewLayout.h"
 #import "CollectionViewController.h"
 
 @interface CollectionViewController ()
@@ -56,6 +57,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.view addSubview:self.imageView];
     
     self.images = [NSMutableDictionary new];
+    
+    [self.collectionView setCollectionViewLayout:[DMRCollectionViewLayout new]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSURL* url = [NSURL URLWithString:@"http://cbc.ca/json/cmlink/1.3084190"];

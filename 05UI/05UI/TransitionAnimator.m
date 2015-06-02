@@ -53,7 +53,7 @@
         sourceVC = collectionView;
         targetVC = vc;
         
-        sourceContainer = [collectionView collectionView:collectionView.collectionView cellForItemAtIndexPath:collectionView.transitionRow];
+        sourceContainer = [collectionView.collectionView cellForItemAtIndexPath:collectionView.transitionRow];
         sourceImage = (UIImageView*)[sourceContainer viewWithTag:1];
         sourceLabel = (UILabel*)[sourceContainer viewWithTag:2];
         sourceShadow = [sourceContainer viewWithTag:3];
@@ -71,8 +71,7 @@
         sourceVC = vc;
         targetVC = collectionView;
         
-        targetContainer = [collectionView collectionView:collectionView.collectionView cellForItemAtIndexPath:collectionView.transitionRow];
-
+        targetContainer = [collectionView.collectionView cellForItemAtIndexPath:collectionView.transitionRow];
         targetImage = (UIImageView*)[targetContainer viewWithTag:1];
         targetLabel = (UILabel*)[targetContainer viewWithTag:2];
         targetShadow = [targetContainer viewWithTag:3];
@@ -96,6 +95,7 @@
     transitionImageView.image = sourceImage.image;
     transitionImageView.bounds = sourceImage.bounds;
     transitionImageView.center = [container convertPoint:sourceImage.center fromView:sourceContainer];
+    transitionImageView.contentMode = sourceImage.contentMode;
     [container addSubview:transitionImageView];
     
     UIView* transitionShadow = [UIView new];
@@ -136,7 +136,7 @@
 
     
     [UIView animateWithDuration:ANIM_MULTIPLIER* 0.25f animations:^{
-        
+
         if (!forwardTransition) {
             transitionImageView.center = [container convertPoint:targetImage.center fromView:targetContainer];
             transitionLabel.center = [container convertPoint:targetLabel.center fromView:targetContainer];
@@ -163,6 +163,8 @@
                 } else {
                     transitionShadow.bounds = targetShadow.bounds;
                 }
+                transitionImageView.contentMode = targetImage.contentMode;
+                transitionImageView.bounds = targetImage.bounds;
                 transitionImageView.center = [container convertPoint:targetImage.center fromView:targetContainer];
                 transitionLabel.center = [container convertPoint:targetLabel.center fromView:targetContainer];
             } completion:^(BOOL finished) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E61EF5761B1DF1B2004EDFAA /* DMRCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E61EF5751B1DF1B2004EDFAA /* DMRCollectionViewLayout.m */; };
 		E6A78E421B1D3C9800FF2CF5 /* tvtest.png in Resources */ = {isa = PBXBuildFile; fileRef = E6A78E411B1D3C9800FF2CF5 /* tvtest.png */; };
 		E6A78E451B1DDBBE00FF2CF5 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6A78E441B1DDBBE00FF2CF5 /* CollectionViewController.m */; };
 		E6CDA6051B1D190B0095A0C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6CDA6041B1D190B0095A0C2 /* main.m */; };
@@ -32,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E61EF5741B1DF1B2004EDFAA /* DMRCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRCollectionViewLayout.h; sourceTree = "<group>"; };
+		E61EF5751B1DF1B2004EDFAA /* DMRCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRCollectionViewLayout.m; sourceTree = "<group>"; };
 		E6A78E411B1D3C9800FF2CF5 /* tvtest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tvtest.png; path = ../tvtest.png; sourceTree = "<group>"; };
 		E6A78E431B1DDBBE00FF2CF5 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		E6A78E441B1DDBBE00FF2CF5 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				E6CDA62D1B1D1AA00095A0C2 /* TransitionAnimator.m */,
 				E6CDA62E1B1D1AA00095A0C2 /* ViewController.h */,
 				E6CDA62F1B1D1AA00095A0C2 /* ViewController.m */,
+				E61EF5741B1DF1B2004EDFAA /* DMRCollectionViewLayout.h */,
+				E61EF5751B1DF1B2004EDFAA /* DMRCollectionViewLayout.m */,
 				E6A78E411B1D3C9800FF2CF5 /* tvtest.png */,
 				E6CDA60C1B1D190B0095A0C2 /* Main.storyboard */,
 				E6CDA60F1B1D190B0095A0C2 /* Images.xcassets */,
@@ -247,6 +252,7 @@
 				E6A78E451B1DDBBE00FF2CF5 /* CollectionViewController.m in Sources */,
 				E6CDA6321B1D1AA00095A0C2 /* TransitionAnimator.m in Sources */,
 				E6CDA6301B1D1AA00095A0C2 /* NavigationController.m in Sources */,
+				E61EF5761B1DF1B2004EDFAA /* DMRCollectionViewLayout.m in Sources */,
 				E6CDA6081B1D190B0095A0C2 /* AppDelegate.m in Sources */,
 				E6CDA6311B1D1AA00095A0C2 /* TableViewController.m in Sources */,
 				E6CDA6051B1D190B0095A0C2 /* main.m in Sources */,
