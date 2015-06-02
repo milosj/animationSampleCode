@@ -61,7 +61,6 @@ static NSUInteger kColumnTypeDefault    = 1;   // 33% collectionView width
         attributes.frame = CGRectIntegral(CGRectMake(xOffset, yOffset, itemSize.width, itemSize.height));
         [_itemAttributes addObject:attributes];
         
-        NSLog(@"index: %d, column %d/%lu", index, column, (unsigned long)numberOfColumnsInRow);
         xOffset = xOffset+itemSize.width+_itemOffset.horizontal;
         column++;
         
