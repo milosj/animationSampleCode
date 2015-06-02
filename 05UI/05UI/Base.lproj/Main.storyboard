@@ -64,6 +64,73 @@
             </objects>
             <point key="canvasLocation" x="1136" y="1024"/>
         </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="5CE-tF-W2E">
+            <objects>
+                <collectionViewController id="yLn-DP-saC" customClass="CollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="0Md-Og-gqK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="dNH-zr-9Fu">
+                            <size key="itemSize" width="375" height="281"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="iQN-pw-rQY">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AnP-7R-tDo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
+                                        </imageView>
+                                        <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1Z-K9-XqG">
+                                            <rect key="frame" x="0.0" y="241" width="375" height="40"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mz-dE-qEq">
+                                            <rect key="frame" x="8" y="252" width="359" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="AnP-7R-tDo" secondAttribute="bottom" id="7md-c3-lgq"/>
+                                    <constraint firstAttribute="trailing" secondItem="W1Z-K9-XqG" secondAttribute="trailing" id="HSb-F8-jli"/>
+                                    <constraint firstAttribute="bottom" secondItem="W1Z-K9-XqG" secondAttribute="bottom" id="IwC-C9-LLn"/>
+                                    <constraint firstAttribute="trailing" secondItem="8mz-dE-qEq" secondAttribute="trailing" constant="8" id="Mpv-go-Oui"/>
+                                    <constraint firstItem="W1Z-K9-XqG" firstAttribute="leading" secondItem="iQN-pw-rQY" secondAttribute="leading" id="P16-yM-eKj"/>
+                                    <constraint firstItem="8mz-dE-qEq" firstAttribute="leading" secondItem="iQN-pw-rQY" secondAttribute="leading" constant="8" id="Yub-0V-fiA"/>
+                                    <constraint firstItem="AnP-7R-tDo" firstAttribute="leading" secondItem="iQN-pw-rQY" secondAttribute="leading" id="cW1-Bn-jIN"/>
+                                    <constraint firstItem="AnP-7R-tDo" firstAttribute="top" secondItem="iQN-pw-rQY" secondAttribute="top" id="e14-wk-Dod"/>
+                                    <constraint firstItem="W1Z-K9-XqG" firstAttribute="top" secondItem="8mz-dE-qEq" secondAttribute="bottom" constant="-32" id="qPd-8e-Gy9"/>
+                                    <constraint firstAttribute="bottom" secondItem="8mz-dE-qEq" secondAttribute="bottom" constant="8" id="qsR-8V-wkP"/>
+                                    <constraint firstAttribute="trailing" secondItem="AnP-7R-tDo" secondAttribute="trailing" id="x4n-RV-OTq"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="iis-F2-b3O" kind="show" id="fpz-4n-q06"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="yLn-DP-saC" id="wsb-Ib-yqV"/>
+                            <outlet property="delegate" destination="yLn-DP-saC" id="TsJ-j6-ipf"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="9ck-eF-wZa"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SzB-LU-RpG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1136" y="1691"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="30K-Wx-nrf">
             <objects>
@@ -77,13 +144,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pD3-Jq-iW3">
-                                <rect key="frame" x="0.0" y="64" width="600" height="472"/>
+                                <rect key="frame" x="0.0" y="-64" width="600" height="600"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F04-89-sg7">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.5" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="F04-89-sg7">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QSs-gG-Ur4">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="375" id="94S-ts-sSB"/>
                                             <constraint firstAttribute="width" secondItem="QSs-gG-Ur4" secondAttribute="height" multiplier="4:3" id="Lly-Wj-Foe"/>
@@ -95,8 +163,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMJ-lT-t4B">
-                                        <rect key="frame" x="20" y="318" width="335" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMJ-lT-t4B">
+                                        <rect key="frame" x="20" y="318" width="335" height="1469"/>
                                         <string key="text">Williamsburg four loko Austin, pop-up narwhal Shoreditch master cleanse forage cred typewriter church-key kitsch Pinterest. Umami quinoa crucifix biodiesel, meh master cleanse single-origin coffee post-ironic fingerstache. Ennui Carles tofu, try-hard cronut yr stumptown Brooklyn Helvetica bespoke. Williamsburg fixie chillwave, mlkshk ugh Thundercats messenger bag seitan heirloom keytar Bushwick post-ironic vinyl hashtag Blue Bottle. Cold-pressed Helvetica biodiesel Marfa Godard. Pop-up selvage health goth cold-pressed, artisan flannel High Life banh mi Kickstarter you probably haven't heard of them wayfarers literally Godard. Fingerstache fashion axe semiotics normcore salvia McSweeney's meh irony tofu kogi, you probably haven't heard of them pour-over cold-pressed.
 
 Sriracha Intelligentsia Banksy paleo craft beer tousled. Tattooed sriracha Truffaut shabby chic, cold-pressed mixtape artisan flannel butcher 8-bit. 8-bit Wes Anderson biodiesel lumbersexual, XOXO authentic sustainable ethical Truffaut umami master cleanse freegan. Shoreditch bicycle rights retro semiotics, wolf Brooklyn PBR authentic Schlitz. 3 wolf moon occupy Odd Future Marfa, cronut narwhal swag. Fashion axe VHS swag letterpress, authentic Schlitz Banksy aesthetic pop-up 90's mumblecore locavore. Bushwick twee leggings, try-hard disrupt distillery typewriter semiotics.
@@ -122,6 +190,12 @@ Shoreditch small batch cliche deep v yr cray, Banksy before they sold out pug je
                                     <constraint firstItem="zQu-So-aXh" firstAttribute="leading" secondItem="F04-89-sg7" secondAttribute="leading" constant="20" symbolic="YES" id="y5J-Qj-wPU"/>
                                     <constraint firstItem="QSs-gG-Ur4" firstAttribute="top" secondItem="F04-89-sg7" secondAttribute="top" id="zUe-9d-vJk"/>
                                 </constraints>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="31" width="400" height="736"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="iis-F2-b3O" id="VnW-Yr-SbL"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -131,7 +205,7 @@ Shoreditch small batch cliche deep v yr cray, Banksy before they sold out pug je
                             <constraint firstItem="lfe-EG-7qu" firstAttribute="top" secondItem="F04-89-sg7" secondAttribute="bottom" id="ceV-lf-oyW"/>
                             <constraint firstItem="lfe-EG-7qu" firstAttribute="top" secondItem="pD3-Jq-iW3" secondAttribute="bottom" id="evK-iN-Zp8"/>
                             <constraint firstItem="pD3-Jq-iW3" firstAttribute="leading" secondItem="Vaw-3t-z5U" secondAttribute="leading" id="mYx-Be-o6u"/>
-                            <constraint firstItem="pD3-Jq-iW3" firstAttribute="top" secondItem="Vaw-3t-z5U" secondAttribute="top" constant="64" id="mwf-68-GHz"/>
+                            <constraint firstItem="pD3-Jq-iW3" firstAttribute="top" secondItem="Vaw-3t-z5U" secondAttribute="top" constant="-64" id="mwf-68-GHz"/>
                             <constraint firstAttribute="trailing" secondItem="F04-89-sg7" secondAttribute="trailing" id="oeK-Xz-dzu"/>
                             <constraint firstItem="F04-89-sg7" firstAttribute="leading" secondItem="Vaw-3t-z5U" secondAttribute="leading" id="vOy-SV-ges"/>
                         </constraints>
@@ -139,6 +213,7 @@ Shoreditch small batch cliche deep v yr cray, Banksy before they sold out pug je
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="pD3-Jq-iW3" id="Srt-cn-BCQ"/>
+                        <outlet property="descriptionLabel" destination="QMJ-lT-t4B" id="n9L-rP-Tv5"/>
                         <outlet property="imageView" destination="QSs-gG-Ur4" id="a4q-1P-Ynj"/>
                         <outlet property="label" destination="zQu-So-aXh" id="IwF-3h-ZIZ"/>
                         <outlet property="scrollView" destination="F04-89-sg7" id="9BQ-GB-ffw"/>
@@ -159,7 +234,7 @@ Shoreditch small batch cliche deep v yr cray, Banksy before they sold out pug je
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="bgO-CF-Ypp" kind="relationship" relationship="rootViewController" id="Nvl-Vj-6tA"/>
+                        <segue destination="yLn-DP-saC" kind="relationship" relationship="rootViewController" id="L0i-86-lLi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w1X-XH-vOp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -167,4 +242,7 @@ Shoreditch small batch cliche deep v yr cray, Banksy before they sold out pug je
             <point key="canvasLocation" x="324" y="1024"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fpz-4n-q06"/>
+    </inferredMetricsTieBreakers>
 </document>
